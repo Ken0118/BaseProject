@@ -1,6 +1,6 @@
 # BaseProject-Cpp
 [![Build Status](https://travis-ci.org/Ken0118/Laplace.svg?branch=master)](https://travis-ci.org/Ken0118/Laplace)
-[![codecov](https://codecov.io/gh/1081-FCU-SE/Laplace/branch/master/graph/badge.svg)](https://codecov.io/gh/1081-FCU-SE/Laplace)
+[![codecov](https://codecov.io/gh/Ken0118/Laplace/branch/master/graph/badge.svg)](https://codecov.io/gh/Ken0118/Laplace)
 
 分組專題基本樣板(C++)
 
