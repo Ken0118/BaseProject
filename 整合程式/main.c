@@ -172,8 +172,8 @@ int name_check(FILE* fpr, char userName[]) //判斷名字是否註冊過了 1:�
         }
     }
     return 1;
-
 }
+
 void login() //登入
 {
     FILE *fpr;
@@ -230,7 +230,7 @@ void LoginSignin() //選擇註冊或登入
         switch(choice){
             case 1:
                 signUp();
-                break;int choice;
+                break;
             case 2:
                 login();
                 break;
@@ -251,7 +251,7 @@ void member_system() //會員系統
     while(1){
         printf("\n-----------------Member System----------------\n");
         printf("%s 你好!\n",g_userName);
-        printf("(1)個人收藏 (2)評論文章 (3)介面設置 (4)返回主介面 (4)登出 : ");
+        printf("(1)個人收藏 (2)評論文章 (3)介面設置 (4)返回主介面 (5)登出 : ");
         scanf("%d",&choice);
         switch(choice){
             case 1:
@@ -267,7 +267,7 @@ void member_system() //會員系統
                 return;
             case 5:
                 logout();
-                break;
+                return;
             default:
                 printf("沒有這個選項請重新選擇!\n");
                 continue;
@@ -348,13 +348,16 @@ void mainPage()
         scanf("%d",&choice);
         switch(choice){
             case 1:
-                drawCard_system();
+                drawCard_system();//前往抽卡系統
                 break;
             case 2:
                 member_system();
                 break;
             default:
                 printf("not complete yet...\n");
+        }
+        if(g_userStatus==0){ //檢查使用者是否登出
+            return;//回到main
         }
     }
 }
