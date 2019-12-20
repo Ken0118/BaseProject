@@ -194,9 +194,27 @@ void review_system()//評論系統
     scanf("%s",name);
     printf("%s\n",name);
     printf("請輸入你的評論:");
-    scanf("%s",comment);
+    scanf("%*c");//讀換行符號
+    gets(comment);
     printf("%s\n",comment);
+    store_review(name,comment);
     printf("你的評論已發布!\n");
+    return;
+}
+
+void store_review(char shop_name[],char comment[])
+{
+    FILE *fpa;
+    char filename[50];
+    char str2[50]="_review.txt";
+    strcpy(filename,g_userName);
+    strcat(filename,str2); //(檔案名稱:USERNAME_review.txt)
+
+    fpa = fopen(filename,"a");
+    fprintf(fpa,"%s\n",shop_name);
+    fprintf(fpa,"%s\n",comment);
+    fclose(fpa);
+    return;
 }
 //----------------排序系統----------------------
 void PriceSorting()//排序系統
@@ -690,19 +708,19 @@ void showMyFavorite() //顯示使用者的收藏店家
 void reviewHistory()//顯示使用者的評論文章紀錄
 {
     FILE *fpr;
-    char str1[50];
+    char filename[50];
     char str2[50]="_review.txt";
-    char review[500];
-    str1[0]="\0";
-    strcpy(str1,g_userName);
-    strcat(str1,str2); //(檔案名稱:USERNAME_review.txt)
-    fpr = fopen(str1,"r");
+    char review[128];
+    strcpy(filename,g_userName);
+    strcat(filename,str2); //(檔案名稱:USERNAME_review.txt)
+    fpr = fopen(filename,"r");
     if(fpr==NULL){
         printf("沒有任何評論文章紀錄!\n");
     }else{
-        while(fpr!=EOF){
-            fscanf(fpr,"%s",review);
-            printf("%s",review);
+        while(!feof(fpr)){
+            fgets(review, 128, fpr);//讀取一行
+            printf("%s\n",review); //將評論印出
+            review[0]=NULL;
         }
     }
 }
@@ -763,7 +781,7 @@ void mainPage()
                 review_system();
                 break;
             default:
-                printf("no this option!\n");
+                printf("沒有這個選項!\n");
         }
     }
 }
